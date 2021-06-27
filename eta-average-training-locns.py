@@ -4,8 +4,6 @@ import math
 
 import PySimpleGUI as sg
 import WazeRouteCalculator
-from progress.bar import Bar
-bar = Bar('Loading')
 
 #
 # set defaults and initialize variables
@@ -30,21 +28,18 @@ region = 'US'
 #logger.setLevel(logging.DEBUG)
 #handler = logging.StreamHandler()
 #logger.addHandler(handler)
-team = {"Angelo Capozzoli": "140 Ketton Way, Alpharetta, GA 30005",
-        "Barry Bozeman": "303 Cross Pointe Way, Hiram, GA 30141",
+team = {"Barry Bozeman": "303 Cross Pointe Way, Hiram, GA 30141",
         "Beverly Benton": "5830 Wembley Drive Douglasville, GA 30135",
         "Cheryl Knieriemen": "138 Courtland Circle Powder Springs, GA  30127",
         "Dawn Welch": "5175 Hwy 41 South Buena Vista, GA 31803",
         "Gary Bonneau":   "4110 Night Sky Ln Cumming, GA 30041",
         "Heidi Morris-Taylor": "5373 Zachery Drive Stone Mountain, GA 30083",
-        "Hilary Nickerson": "315 Oxford Meadow Run Alpharetta, GA 30004", 
-        "James Martin": "790 Huff Road Atlanta, GA 30318",     
+        "Hilary Nickerson": "315 Oxford Meadow Run Alpharetta, GA 30004",       
         "Jennifer Kingsley": "4190 Everett Springs Rd. NE Armuchee, GA 30105",
         "Jennifer/Maddy Sheppard": "1702 Frazier Park Drive Decatur, GA 30033",
         "Joel Barrett": "3458 Dunlin Shore Court, Peachtree Corners, GA 30092",
-        "Nina Kozlova": "92 Regency Rd Alpharetta, GA 30022",
         "Pam Nyberg": "2705 Diamond Head Court Decatur, GA 30033",
-	 "Patrick Hislar": "3211 Katelyn Ct.  SW Liburn, GA 30047",
+	    "Patrick Hislar": "3211 Katelyn Ct.  SW Liburn, GA 30047",
         "Phil Schillinger": "281 Mallard Dr Carrollton, GA 30116",
         "Robert Copelan": "5911 Jim Crow Road Flowery Branch, GA 30542",
         "Sherri Schwartz": "4703 Cambridge Drive Dunwoody, GA 30338",
@@ -54,7 +49,25 @@ team = {"Angelo Capozzoli": "140 Ketton Way, Alpharetta, GA 30005",
         "Orby Taylor": "4225 Brass Trail Austell, GA 30105",
         "James Martin": "790 Huff Rd NW, Atlanta, GA 30318"
        }
-
+training_locns = {
+                  "Bowmans Island": "850 Island Ford Road, Buford, GA",
+                  "Arabia Mtn": "3901 North Goddard Road, Lithonia GA ",
+                  "Tucker": "",
+                  "Richland Reservior": "11090 Cartersville Hwy, Dallas, GA",
+                  "Samples Property": "5780 Big A Road, Douglasville GA",
+                  "7 Hills": "",
+                  "Chattahoochee Bend SP": "",
+                  "Paulding Co Fire Tng Ctr": "650 North Industrial Blvd, Dallas GA ",
+                  "Red Top Mtn SP": "1126 Red Top Mountain Rd SE, Cartersville GA",
+                  "Abbots Bridge-Chattahoochee Rec Area": "4599 Abbotts Bridge Road, Duluth GA",
+                  "": "",
+                  "": "",
+                  "": "",
+                  "": "",
+                  "": "",
+                  
+                  "": ""
+                 }
 layout_a = [[sg.Text('select deploying members')]] 
 layout_error = [sg.Text(error_msg)]    
 layout_buttons = [sg.Button('Calculate ETA'), sg.Button('Clear'), sg.Button('Repeat'), sg.Button('Exit')]
@@ -119,7 +132,6 @@ while (True):
     print ("Estimated travel time to:\n    ", to_address,"\n *** Calculating ***\n\n")
     indx = 0
     while indx < len(win1_values)- 1:
-        bar.next()
         if win1_values[indx]:
             #for member,addr in team.items(): 
             from_address = team[key_array[indx]]
@@ -144,21 +156,16 @@ while (True):
             except WazeRouteCalculator.WRCError as err:
                 print(err)
         indx += 1
-    bar.finish()
     print (deploy_list)
         #print ("\n\n")
         #print (Sort(deploy_list) )
-    if current_time.minute < 10:
-        leading_zero = "0"
-    else:
-        leading_zero = ""
     text_lines_str = to_address + "  " + str(current_time.hour) + ":" + leading_zero + str(current_time.minute) + "\n"
     num_deploying = 0
-    total_minutes = 0 
+    total_minutes = 0    
     for members in Sort(deploy_list):
-        minutes = datetime.timedelta(minutes= math.ceil(members[1]))
         num_deploying += 1
-        total_minutes  = total_minutes + (minutes.total_seconds() / 60)    
+        minutes = datetime.timedelta(minutes= math.ceil(members[1]))
+        total_minutes += minutes
         eta = current_time + minutes
         if eta.minute < 10:
             leading_zero = "0"
@@ -167,7 +174,7 @@ while (True):
         print ("{:<30} {:^8} {:.0f} minutes  {:.0f} miles".format(members[0], str(eta.hour) + ":" + leading_zero + str(eta.minute), math.ceil(members[1]),math.ceil(members[2])))
         text_lines_str = text_lines_str + "{:<25} {:^8} {:.0f} minutes  {:.0f} miles".format(members[0], str(eta.hour) + ":" + leading_zero + str(eta.minute), math.ceil(members[1]),math.ceil(members[2])) + "\n"
 #       text_lines_str = text_lines_str + members[0] + " " +  str(eta.hour) + ":" + leading_zero + str(eta.minute) + "  " + str(math.ceil(members[1])) + " minutes  " + str(math.ceil(members[2])) + " miles\n"
-    text_lines_str = text_lines_str + "Average Travel Time: " + str(total_minutes / num_deploying) + " minutes"
+    text_lines_str = text_lines_str + "\nAverage Travel Time: ", total_minutes / num_deploying + "\n"
     layout2.append([sg.Text(text_lines_str, text_color='white', background_color='blue',size=(80,30))])
     layout2.append([sg.Button('Calculate ETA'), sg.Button('Clear'), sg.Button('Repeat'), sg.Button('Exit')])
     win1.Close()
