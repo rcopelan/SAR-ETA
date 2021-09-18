@@ -1,0 +1,156 @@
+{
+   "ids": {
+      "CustomLayer": [],
+      "Shape": [
+         "fd70cb41-26b9-493e-a950-9f110e66a3d4"
+      ],
+      "FieldWaypoint": [],
+      "FieldTrack": [],
+      "Resource": [],
+      "GeoRef": [],
+      "Marker": [
+         "72aaf386-b4b3-4f00-a8ca-6b345f4082c0",
+         "67634172-d314-4b73-8680-bd3ad9fa3331"
+      ],
+      "Folder": [],
+      "OperationalPeriod": [],
+      "AppTrack": [
+         "9df9f982-255a-4ff8-bb29-80333fc06bc4"
+      ],
+      "Assignment": [],
+      "Locator": [],
+      "LocatorGroup": [],
+      "Clue": [],
+      "ConfiguredLayer": [],
+      "MapGeoImage": []
+   },
+   "state": {
+      "features": [
+         {
+            "geometry": {
+               "coordinates": [
+                  [
+                     [
+                        -83.91858349229004,
+                        34.21751167728509
+                     ],
+                     [
+                        -83.91334782029297,
+                        34.22226681091459
+                     ],
+                     [
+                        -83.90742550278809,
+                        34.22013767978648
+                     ],
+                     [
+                        -83.90948543931152,
+                        34.21467266358806
+                     ],
+                     [
+                        -83.91497860337402,
+                        34.21460168702
+                     ],
+                     [
+                        -83.91858349229004,
+                        34.21744070310852
+                     ],
+                     [
+                        -83.91858349229004,
+                        34.21751167728509
+                     ]
+                  ]
+               ],
+               "type": "Polygon"
+            },
+            "id": "fd70cb41-26b9-493e-a950-9f110e66a3d4",
+            "type": "Feature",
+            "properties": {
+               "creator": "KQSNG2",
+               "stroke-opacity": 1,
+               "description": "",
+               "stroke-width": 2,
+               "title": "polygon",
+               "fill": "#FF0000",
+               "class": "Shape",
+               "updated": 1624932294000,
+               "stroke": "#FF0000",
+               "fill-opacity": 0.1,
+               "gpstype": "TRACK"
+            }
+         },
+         {
+            "geometry": {
+               "coordinates": [
+                  -83.91033661928626,
+                  34.18022802678225,
+                  0,
+                  0
+               ],
+               "type": "Point"
+            },
+            "id": "72aaf386-b4b3-4f00-a8ca-6b345f4082c0",
+            "type": "Feature",
+            "properties": {
+               "marker-symbol": "point",
+               "creator": "KQSNG2",
+               "marker-color": "#FF0000",
+               "description": "",
+               "title": "IC",
+               "class": "Marker",
+               "updated": 1624849444000,
+               "marker-size": 1
+            }
+         },
+         {
+            "geometry": {
+               "coordinates": [
+                  -83.93369877665177,
+                  34.2183400179203,
+                  0,
+                  0
+               ],
+               "type": "Point"
+            },
+            "id": "67634172-d314-4b73-8680-bd3ad9fa3331",
+            "type": "Feature",
+            "properties": {
+               "marker-symbol": "point",
+               "creator": "KQSNG2",
+               "marker-color": "#FF0000",
+               "description": "",
+               "title": "Home",
+               "class": "Marker",
+               "updated": 1624843499000,
+               "marker-size": 1
+            }
+         },
+         {
+            "geometry": {
+               "size": 71,
+               "coordinates": [
+                  [
+                     -83.93386467,
+                     34.21834909,
+                     333,
+                     1625194141000
+                  ]
+               ],
+               "incremental": true,
+               "type": "LineString"
+            },
+            "id": "9df9f982-255a-4ff8-bb29-80333fc06bc4",
+            "type": "Feature",
+            "properties": {
+               "creator": "KQSNG2",
+               "stroke-opacity": 1,
+               "pattern": "solid",
+               "stroke-width": 2,
+               "title": "7/1/2021",
+               "class": "AppTrack",
+               "updated": 1625194136000,
+               "stroke": "#FF0000"
+            }
+         }
+      ]
+   }
+}
